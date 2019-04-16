@@ -1,17 +1,48 @@
 #include<stdio.h>
+#include<string.h>
 
-int main() {
 
-int x[] = {13, 214, 982, 24982, 124, 412944, 24, 244, 547, 356};
-int i = 0, store = 0;
+//making prototype for encrypting functions
+void substitutionEncryption(char plainLetter);
+void substitutionDecryption(char plainLetter);
 
-for(i = 0; i < 10; i++) {
-if(x[i] > store) {
-store = x[i];
+
+int main()
+{
+    
+    char plainLetter;
+    
+    FILE *input;
+    input = fopen("input2.txt", "r");
+    
+    //ensuring the file is reading from beginning
+    fseek(input, SEEK_SET, SEEK_CUR);
+    
+    while(!feof(input))
+    {
+        fscanf(input, "%c", &plainLetter);
+        
+        substitutionEncryption(plainLetter);
+        
+        printf("%c", plainLetter);
     }
- }
+ 
+ 
+  return 0;  
+}
 
-printf("The largest element is: %d\n", store);
+void substitutionEncryption(char plainLetter)
+{
+    switch(plainLetter)
+    {
+      case 'A': plainLetter = 'M';
+        break;
+      case 'B': plainLetter = 'O';
+        break;
+      case 'C': plainLetter = 'C';
+        break;
+      case'D': plainLetter = 'N';
+        break;
+    }
 
-return 0;
 }
